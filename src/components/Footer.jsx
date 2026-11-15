@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NAVIGATION_DATA } from '../data/storeData';
 import { ArrowRight, Check } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 function InstagramIcon({ size = 18 }) {
   return (
@@ -55,11 +56,7 @@ export default function Footer({ onNavigate }) {
               onClick={(e) => navTo('home', e)}
               className="text-left focus:outline-none"
             >
-              <img
-                src="//toratory.com/cdn/shop/files/TT_Primary_Logo_White_-_Alpha.png?v=1787139088&width=325"
-                alt="TORA & TORY"
-                className="h-8 sm:h-9 w-auto object-contain brightness-100 cursor-pointer"
-              />
+              <BrandLogo light={true} className="h-8 sm:h-9 cursor-pointer" />
             </button>
             
             <p className="text-xs sm:text-sm font-serif italic text-neutral-400 max-w-sm leading-relaxed">
@@ -69,7 +66,7 @@ export default function Footer({ onNavigate }) {
             {/* Social Icons */}
             <div className="flex items-center space-x-6 pt-2">
               <a
-                href="https://www.instagram.com/toratory/"
+                href="https://www.instagram.com"
                 target="_blank"
                 rel="noreferrer"
                 className="text-neutral-400 hover:text-white transition-colors"
@@ -78,7 +75,7 @@ export default function Footer({ onNavigate }) {
                 <InstagramIcon size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/company/tora-tory/"
+                href="https://www.linkedin.com"
                 target="_blank"
                 rel="noreferrer"
                 className="text-neutral-400 hover:text-white transition-colors"
@@ -222,7 +219,7 @@ export default function Footer({ onNavigate }) {
 
         {/* Bottom Bar: Copyright & Location */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-sans text-neutral-500 tracking-wider space-y-4 sm:space-y-0">
-          <p>© 2026 TORA &amp; TORY. All Rights Reserved.</p>
+          <p>© 2026 VALOIR ATELIER. All Rights Reserved.</p>
           <p className="uppercase tracking-[0.2em] text-[10px] text-neutral-400">
             India • Contemporary Demi-Fine Jewellery
           </p>

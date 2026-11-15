@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PRODUCTS } from '../data/storeData';
 import { Eye, ShoppingBag, Check } from 'lucide-react';
 
-export default function ShopPage({ onSelectProduct, onAddToCart }) {
+export default function ShopPage({ onSelectProduct, onNavigateToProduct, onAddToCart }) {
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [sortBy, setSortBy] = useState('featured');
   const [addedItemMap, setAddedItemMap] = useState({});
@@ -115,7 +115,7 @@ export default function ShopPage({ onSelectProduct, onAddToCart }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4 }}
-                onClick={() => onSelectProduct(product.id)}
+                onClick={() => (onNavigateToProduct ? onNavigateToProduct(product.id) : onSelectProduct(product.id))}
                 className="group cursor-pointer flex flex-col justify-between border border-transparent hover:border-[#E8E5DF] p-3 transition-all duration-300 bg-white"
               >
                 {/* Image Container with Hover Swap */}

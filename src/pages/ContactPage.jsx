@@ -36,7 +36,7 @@ export default function ContactPage() {
           Contact The Atelier
         </h1>
         <p className="text-xs sm:text-sm font-sans text-neutral-600 font-light leading-relaxed">
-          At TORA &amp; TORY, we are dedicated to providing exceptional support. Our client care team is available to assist with private appointments, bespoke ring fittings, and archive acquisitions.
+          At VALOIR, we are dedicated to providing exceptional support. Our client care team is available to assist with private appointments, bespoke ring fittings, and archive acquisitions.
         </p>
       </motion.div>
 
@@ -55,7 +55,7 @@ export default function ContactPage() {
               Private Salon &amp; Studio
             </h3>
             <p className="text-sm font-sans text-neutral-600 leading-relaxed">
-              TORA &amp; TORY Atelier &amp; Design Studio<br />
+              VALOIR Atelier &amp; Design Studio<br />
               New Delhi, India
             </p>
             <p className="text-xs font-serif italic text-neutral-500">
@@ -66,7 +66,7 @@ export default function ContactPage() {
           <div className="space-y-4 text-xs font-sans text-neutral-700">
             <div className="flex items-center space-x-3">
               <Mail size={16} className="text-neutral-400" />
-              <span>care@toratory.com</span>
+              <span>care@valoir-atelier.com</span>
             </div>
             <div className="flex items-center space-x-3">
               <Phone size={16} className="text-neutral-400" />
@@ -143,7 +143,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Jasmeet Nagrath"
+                      placeholder="e.g. Elena Vance"
                       className="w-full px-4 py-3 border border-neutral-300 text-xs sm:text-sm font-sans focus:outline-none focus:border-neutral-900 bg-white"
                     />
                   </div>

@@ -9,12 +9,13 @@ import SearchModal from './components/SearchModal';
 import NewsletterPopup from './components/NewsletterPopup';
 import PageSwitcher from './components/PageSwitcher';
 
-// The 5 Pages
+// The Pages
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import GyrePage from './pages/GyrePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ProductPage from './pages/ProductPage';
 
 import { PRODUCTS } from './data/storeData';
 
@@ -34,15 +35,28 @@ export default function App() {
   // Search modal state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  // Current active product for full Product Details Page
+  const [currentProductId, setCurrentProductId] = useState('gulf-cuff');
+
   // Selected product quick-view modal state
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   // Sync hash routing
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#/', '').replace('#', '');
-      if (['home', 'shop', 'gyre', 'about', 'contact'].includes(hash)) {
-        setCurrentPage(hash);
+      const rawHash = window.location.hash.replace('#/', '').replace('#', '');
+      if (rawHash.startsWith('product/')) {
+        const prodId = rawHash.replace('product/', '');
+        if (PRODUCTS[prodId]) {
+          setCurrentProductId(prodId);
+          setCurrentPage('product');
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          return;
+        }
+      }
+      if (['home', 'shop', 'gyre', 'about', 'contact', 'product'].includes(rawHash)) {
+        setCurrentPage(rawHash);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       }
     };
     handleHashChange();
@@ -50,10 +64,46 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const navigateTo = (pageId) => {
-    setCurrentPage(pageId);
-    window.location.hash = `#/${pageId}`;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Guarantee scroll to top when page or product changes (including after AnimatePresence transitions)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    const t1 = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 50);
+
+    const t2 = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 320);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [currentPage, currentProductId]);
+
+  const navigateTo = (pageId, prodId = null) => {
+    if (pageId === 'product' && prodId) {
+      setCurrentProductId(prodId);
+      setCurrentPage('product');
+      window.location.hash = `#/product/${prodId}`;
+    } else {
+      setCurrentPage(pageId);
+      window.location.hash = `#/${pageId}`;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
+  const navigateToProduct = (prodId) => {
+    navigateTo('product', prodId);
   };
 
   // Add to cart handler
@@ -86,7 +136,7 @@ export default function App() {
 
   const handleCheckout = () => {
     alert(
-      'Proceeding to Secure Checkout.\n\nThank you for choosing TORA & TORY.\nOrders are crafted with natural gemstones and insured global shipping.'
+      'Proceeding to Secure Checkout.\n\nThank you for choosing VALOIR ATELIER.\nOrders are crafted with natural gemstones and insured global shipping.'
     );
   };
 
@@ -112,7 +162,7 @@ export default function App() {
         onOpenCart={() => setIsCartOpen(true)}
         cartCount={cartItems.reduce((acc, it) => acc + it.quantity, 0)}
         onOpenSearch={() => setIsSearchOpen(true)}
-        onSelectProduct={(id) => setSelectedProductId(id)}
+        onSelectProduct={(id) => navigateToProduct(id)}
       />
 
       {/* Main Multi-Page Content Area with Smooth Crossfade Transitions */}
@@ -128,7 +178,7 @@ export default function App() {
             >
               <HomePage
                 onNavigate={navigateTo}
-                onSelectProduct={(id) => setSelectedProductId(id)}
+                onSelectProduct={(id) => navigateToProduct(id)}
                 onAddToCart={handleAddToCart}
               />
             </motion.div>
@@ -144,6 +194,24 @@ export default function App() {
             >
               <ShopPage
                 onSelectProduct={(id) => setSelectedProductId(id)}
+                onNavigateToProduct={navigateToProduct}
+                onAddToCart={handleAddToCart}
+              />
+            </motion.div>
+          )}
+
+          {currentPage === 'product' && (
+            <motion.div
+              key={`product-${currentProductId}`}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <ProductPage
+                productId={currentProductId}
+                onNavigate={navigateTo}
+                onNavigateToProduct={navigateToProduct}
                 onAddToCart={handleAddToCart}
               />
             </motion.div>
@@ -158,7 +226,7 @@ export default function App() {
               exit="exit"
             >
               <GyrePage
-                onSelectProduct={(id) => setSelectedProductId(id)}
+                onSelectProduct={(id) => navigateToProduct(id)}
                 onAddToCart={handleAddToCart}
               />
             </motion.div>
@@ -206,18 +274,20 @@ export default function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onCheckout={handleCheckout}
+        onNavigateToProduct={navigateToProduct}
       />
 
       <ProductModal
         product={selectedProduct}
         onClose={() => setSelectedProductId(null)}
         onAddToCart={handleAddToCart}
+        onNavigateToProduct={navigateToProduct}
       />
 
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        onSelectProduct={(id) => setSelectedProductId(id)}
+        onSelectProduct={(id) => navigateToProduct(id)}
       />
 
       <NewsletterPopup />

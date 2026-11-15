@@ -24,7 +24,7 @@ export default function GyrePage({ onSelectProduct, onAddToCart }) {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1.0 }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2400&q=90"
+          src="/images/hero-gyre-campaign.jpg"
           alt="The GYRE Collection"
           className="w-full h-full object-cover object-center filter brightness-[0.7] contrast-[1.1] animate-ken-burns"
         />
@@ -93,7 +93,7 @@ export default function GyrePage({ onSelectProduct, onAddToCart }) {
               01 / The Metallurgy of Turbulence
             </h3>
             <p>
-              In *GYRE*, founder and creative head <strong>Jasmeet Raj Nagrath</strong> translates the chaotic fluid mechanics of deep water vortexes into wearable metal sculptures. Rather than polishing away the crucible’s tension, each cuff and ring retains molten textures, sharp tectonic breaks, and the marks of Indian karigars who shape metal without industrial compromise.
+              In *GYRE*, our design studio translates the chaotic fluid mechanics of deep water vortexes into wearable metal sculptures. Rather than polishing away the crucible’s tension, each cuff and ring retains molten textures, sharp tectonic breaks, and the marks of Indian karigars who shape metal without industrial compromise.
             </p>
             <p className="text-neutral-500 text-xs italic">
               "We refused to treat jewellery as static ornamentation. A piece should feel like an artifact excavated from an oceanic trench."

@@ -57,7 +57,7 @@ export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid matching Toratory Lookbook */}
+        {/* 2-Column Grid Lookbook */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {LOOKBOOK_ITEMS.map((look, lookIdx) => (
             <motion.div
@@ -72,7 +72,7 @@ export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
               <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <img
                   src={look.image}
-                  alt={`TORA & TORY Look ${look.id}`}
+                  alt={`Look ${look.id}`}
                   className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                   loading="lazy"
                 />

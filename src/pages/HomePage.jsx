@@ -73,14 +73,14 @@ export default function HomePage({ onNavigate, onSelectProduct, onAddToCart }) {
       <section className="bg-white py-20 px-6 sm:px-12 border-t border-[#E8E5DF] text-center">
         <div className="max-w-3xl mx-auto space-y-6">
           <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 block font-sans">
-            House of TORA &amp; TORY
+            The House &amp; Atelier
           </span>
           <h3 className="text-3xl sm:text-4xl font-serif font-light text-neutral-900">
-            “Kya Tora Lagra Hai.”
+            “Form Beyond Convention.”
           </h3>
           <p className="text-sm font-serif italic text-neutral-600 max-w-xl mx-auto leading-relaxed">
-            In Punjabi, TORA is more than looking good. It’s presence. Confidence. Character.
-            Together with TORY, it celebrates the entire spectrum of self-expression.
+            Sculptural demi-fine jewellery crafted with natural gemstones and molten bronze.
+            Designed without compromise to celebrate presence, character, and individual expression.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button

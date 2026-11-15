@@ -8,7 +8,8 @@ export default function CartDrawer({
   items,
   onUpdateQuantity,
   onRemoveItem,
-  onCheckout
+  onCheckout,
+  onNavigateToProduct
 }) {
   const totalAmount = items.reduce(
     (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
@@ -105,11 +106,19 @@ export default function CartDrawer({
                         className="flex space-x-4 pb-6 border-b border-neutral-200/80 last:border-b-0"
                       >
                         {/* Thumbnail */}
-                        <div className="w-20 h-20 flex-shrink-0 bg-neutral-100 border border-neutral-200 overflow-hidden">
+                        <div
+                          onClick={() => {
+                            if (onNavigateToProduct && item.id) {
+                              onClose();
+                              onNavigateToProduct(item.id);
+                            }
+                          }}
+                          className="w-20 h-20 flex-shrink-0 bg-neutral-100 border border-neutral-200 overflow-hidden cursor-pointer"
+                        >
                           <img
                             src={item.featuredImage || (item.images && item.images[0])}
                             alt={item.title}
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center hover:scale-105 transition-transform"
                           />
                         </div>
 
@@ -117,7 +126,15 @@ export default function CartDrawer({
                         <div className="flex-1 flex flex-col justify-between">
                           <div>
                             <div className="flex justify-between items-start">
-                              <h4 className="text-sm font-serif font-medium text-neutral-900 leading-tight">
+                              <h4
+                                onClick={() => {
+                                  if (onNavigateToProduct && item.id) {
+                                    onClose();
+                                    onNavigateToProduct(item.id);
+                                  }
+                                }}
+                                className="text-sm font-serif font-medium text-neutral-900 leading-tight cursor-pointer hover:underline"
+                              >
                                 {item.title}
                               </h4>
                               <button

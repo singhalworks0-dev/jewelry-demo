@@ -57,7 +57,7 @@ export default function PhilosophySection() {
         {/* Manifesto Block */}
         <div className="text-center max-w-3xl mx-auto space-y-8 bg-white p-8 sm:p-14 border border-[#ECE8E1] shadow-xs">
           <span className="text-[11px] sm:text-[12px] uppercase tracking-[0.3em] font-sans font-medium text-neutral-500 block">
-            The TORA &amp; TORY Manifesto
+            The Atelier Manifesto
           </span>
           
           <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-neutral-800 leading-relaxed">

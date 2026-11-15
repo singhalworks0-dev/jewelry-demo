@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingBag, User, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAVIGATION_DATA } from '../data/storeData';
+import BrandLogo from './BrandLogo';
 
 export default function Navbar({
   currentPage = 'home',
@@ -202,13 +203,9 @@ export default function Navbar({
             <button
               onClick={(e) => handleNavClick('home', e)}
               className="block py-2 focus:outline-none"
-              aria-label="TORA & TORY Home"
+              aria-label="Valoir Atelier Home"
             >
-              <img
-                src="//toratory.com/cdn/shop/files/TT_Primary_Logo_Black_-_Alpha.png?v=1787139058&width=325"
-                alt="TORA & TORY"
-                className="h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer"
-              />
+              <BrandLogo className="h-7 sm:h-9 md:h-10 cursor-pointer" />
             </button>
           </div>
 
@@ -252,7 +249,7 @@ export default function Navbar({
 
             {/* Account Icon */}
             <button
-              onClick={() => alert('TORA & TORY Salon Portal: Sign in to manage client orders and bespoke appointments.')}
+              onClick={() => alert('Salon Portal: Sign in to manage client orders and bespoke appointments.')}
               className="hidden sm:block p-1.5 text-neutral-800 hover:text-black transition-colors"
               aria-label="Account"
             >
@@ -289,11 +286,7 @@ export default function Navbar({
           {/* Drawer Content */}
           <div className="relative w-full max-w-sm bg-white h-full shadow-2xl flex flex-col z-10 p-6 overflow-y-auto">
             <div className="flex items-center justify-between pb-6 border-b border-neutral-200">
-              <img
-                src="//toratory.com/cdn/shop/files/TT_Primary_Logo_Black_-_Alpha.png?v=1787139058&width=200"
-                alt="TORA & TORY"
-                className="h-6 w-auto object-contain"
-              />
+              <BrandLogo className="h-6" />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-1.5 text-neutral-600 hover:text-black"

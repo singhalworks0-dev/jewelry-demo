@@ -16,7 +16,7 @@ export default function AboutPage({ onNavigate }) {
           The House &amp; Philosophy
         </span>
         <h1 className="text-4xl sm:text-6xl font-serif font-light text-neutral-900 tracking-wide">
-          The Origin of TORA &amp; TORY
+          The Origin of The Atelier
         </h1>
         <p className="text-base sm:text-lg font-serif italic text-neutral-600 max-w-xl mx-auto leading-relaxed">
           “Build with purpose. Never accept normal simply because it’s familiar.”
@@ -52,8 +52,28 @@ export default function AboutPage({ onNavigate }) {
               Where was the inclusivity and self-expression in pieces we adorn ourselves with every day? Why was jewellery segregated into strict categories for men and women, or locked away in safes to be opened once under a blue moon?
             </p>
             <p>
-              TORA &amp; TORY questions materials, shuns norms, and challenges processes. We collaborate with worlds jewellery rarely eyes: architecture, geology, industrial engineering, sculpture, music, mineralogy, and fine craftsmanship. Creativity has never respected categories, and neither do we.
+              VALOIR questions materials, shuns norms, and challenges processes. We collaborate with worlds jewellery rarely eyes: architecture, geology, industrial engineering, sculpture, music, mineralogy, and fine craftsmanship. Creativity has never respected categories, and neither do we.
             </p>
+          </div>
+
+          {/* Full-width Editorial Gallery Insert */}
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="aspect-[4/5] overflow-hidden bg-neutral-100 border border-[#ECE8E1]">
+              <img
+                src="/images/gulf-cuff-editorial.jpg"
+                alt="Molten bronze atelier craftsmanship"
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+            </div>
+            <div className="aspect-[4/5] overflow-hidden bg-neutral-100 border border-[#ECE8E1]">
+              <img
+                src="/images/strait-earrings-editorial.jpg"
+                alt="Architectural jewelry design"
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+            </div>
           </div>
         </motion.section>
 
@@ -70,14 +90,14 @@ export default function AboutPage({ onNavigate }) {
             <span>Chapter II</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-normal text-neutral-900">
-            Conceptualisation: “Kya Tora Lagra Hai”
+            Conceptualisation: Form Beyond Convention
           </h2>
           <div className="space-y-4 text-sm sm:text-base font-sans text-neutral-700 leading-relaxed font-light">
             <p>
-              TORA &amp; TORY was born out of that frustration. Growing up in India, founder <strong>Jasmeet Raj Nagrath</strong>’s father would often look at him and say, <em>“Kya tora lagra hai.”</em> In Punjabi, <strong>TORA</strong> is far more than looking good. It’s presence. Unflinching confidence. Character. It’s an energy that doesn’t require external validation because it already knows its worth.
+              The Atelier was born out of that conviction. We set out to create objects with undeniable presence — unflinching confidence, sculptural weight, and timeless character. It is an aesthetic energy that doesn’t require external validation because it already knows its sculptured gravity and worth.
             </p>
             <p>
-              Likewise, his mother would admire his sister and remark, <em>“Kudi tory lagrahi hai.”</em> <strong>TORY</strong> became its natural, poised counterpart. Together, TORA and TORY represent the masculine and feminine ends of the spectrum — not to divide them, but to celebrate everything in between.
+              We celebrate the fluid spectrum of personal identity — neither confined by rigid masculine or feminine codes, but embracing both to honor the fullness of modern self-expression.
             </p>
             <motion.div
               initial={{ scale: 0.98, opacity: 0 }}
@@ -89,7 +109,7 @@ export default function AboutPage({ onNavigate }) {
               “Jewellery has never belonged to one gender, and neither do we. We don’t design for categories. We design for people drawn to the different, the craftsmanship, and the soul behind it.”
             </motion.div>
             <p>
-              Every object carries how Jasmeet moves through the world: restless, particular, and unwilling to leave a piece alone until its balance feels inevitable. TORA &amp; TORY isn’t defined by a single aesthetic. It’s defined by unbound thinking and fearless curiosity.
+              Every object carries how our atelier moves through the world: restless, particular, and unwilling to leave a piece alone until its balance feels inevitable. We are not defined by a single aesthetic. We are defined by unbound thinking and fearless curiosity.
             </p>
           </div>
         </motion.section>

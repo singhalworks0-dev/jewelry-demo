@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ShoppingBag, Check, ShieldCheck, RefreshCw, Truck } from 'lucide-react';
 
-export default function ProductModal({ product, onClose, onAddToCart }) {
+export default function ProductModal({ product, onClose, onAddToCart, onNavigateToProduct }) {
   if (!product) return null;
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
@@ -210,6 +210,18 @@ export default function ProductModal({ product, onClose, onAddToCart }) {
                   </>
                 )}
               </motion.button>
+
+              {onNavigateToProduct && (
+                <button
+                  onClick={() => {
+                    onClose();
+                    onNavigateToProduct(product.id);
+                  }}
+                  className="w-full py-2.5 text-[11px] uppercase tracking-[0.2em] font-sans text-neutral-600 hover:text-black border border-neutral-300 hover:border-black transition-colors"
+                >
+                  View Full Product Details →
+                </button>
+              )}
 
               {/* Value Props */}
               <div className="grid grid-cols-3 gap-2 pt-3 text-[10px] font-sans text-neutral-500 text-center uppercase tracking-wider">

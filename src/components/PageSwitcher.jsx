@@ -2,13 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function PageSwitcher({ currentPage, onNavigate }) {
-  const pages = [
+  const basePages = [
     { id: 'home', label: 'Home' },
     { id: 'shop', label: 'Shop' },
     { id: 'gyre', label: 'Gyre' },
     { id: 'about', label: 'About' },
     { id: 'contact', label: 'Salon' },
   ];
+
+  const pages = currentPage === 'product'
+    ? [...basePages, { id: 'product', label: 'Product' }]
+    : basePages;
 
   return (
     <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none px-4">

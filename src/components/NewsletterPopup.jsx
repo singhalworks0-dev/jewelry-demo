@@ -9,7 +9,7 @@ export default function NewsletterPopup() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const dismissed = localStorage.getItem('toratory_newsletter_dismissed');
+      const dismissed = localStorage.getItem('valoir_newsletter_dismissed');
       if (!dismissed) {
         setIsOpen(true);
       }
@@ -19,7 +19,7 @@ export default function NewsletterPopup() {
 
   const handleClose = () => {
     setIsOpen(false);
-    localStorage.setItem('toratory_newsletter_dismissed', 'true');
+    localStorage.setItem('valoir_newsletter_dismissed', 'true');
   };
 
   const handleSubmit = (e) => {
