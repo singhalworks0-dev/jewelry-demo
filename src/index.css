@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #141414;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #141414;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar for clean luxury look */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D4CC;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A6A29A;
+}
+
+/* Pulsing dual-ring hotspot animation */
+@keyframes pulseDual {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 255, 255, 0.8);
+  }
+  60% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(0, 0, 0, 0), 0 0 0 16px rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.hotspot-pulse {
+  animation: pulseDual 2.4s infinite ease-in-out;
+}
+
+/* Slow cinematic zoom for luxury hero banners */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 18s ease-in-out infinite alternate;
+}
+
+/* Shimmer shine effect for buttons and cards */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-effect::after {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 3s infinite;
+  content: '';
+}
