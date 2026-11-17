@@ -1,345 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { Search, ShoppingBag, User, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
-import { NAVIGATION_DATA } from '../data/storeData';
+import React, {useState, useEffect, useRef} from 'react';
+import {Search, ShoppingBag, User, Menu, X, ChevronDown} from 'lucide-react';
+import {NAVIGATION_DATA} from '../data/storeData';
 import BrandLogo from './BrandLogo';
-
-export default function Navbar({
-  currentPage = 'home',
-  onNavigate,
-  onOpenCart,
-  cartCount,
-  onOpenSearch,
-  onSelectProduct
-}) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [jewelleryDropdownOpen, setJewelleryDropdownOpen] = useState(false);
-  const [currency, setCurrency] = useState('INR');
-  const [currencyOpen, setCurrencyOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleNavClick = (pageId, e) => {
-    e?.preventDefault();
-    if (onNavigate) onNavigate(pageId);
-    setMobileMenuOpen(false);
-    setJewelleryDropdownOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  return (
-    <>
-      <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-[#E8E5DF]'
-            : 'bg-white border-b border-[#EFECE6]'
-        }`}
-      >
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
-          
-          {/* Left: Mobile hamburger & Desktop Main Menu */}
-          <div className="flex items-center space-x-6 flex-1">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-1.5 -ml-1 text-neutral-800 hover:text-black transition-colors"
-              aria-label="Open Menu"
-            >
-              <Menu size={22} strokeWidth={1.5} />
-            </button>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8 text-[12px] uppercase tracking-[0.2em] font-sans font-medium text-neutral-800">
-              
-              {/* HOME */}
-              <button
-                onClick={(e) => handleNavClick('home', e)}
-                className={`hover:text-neutral-500 transition-colors py-2 relative group uppercase tracking-[0.2em] ${
-                  currentPage === 'home' ? 'text-black font-semibold' : 'text-neutral-700'
-                }`}
-              >
-                <span>HOME</span>
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-black transition-all duration-300 ${
-                  currentPage === 'home' ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-              </button>
-
-              {/* JEWELLERY / SHOP with Mega Menu */}
-              <div
-                className="relative py-2 group"
-                onMouseEnter={() => setJewelleryDropdownOpen(true)}
-                onMouseLeave={() => setJewelleryDropdownOpen(false)}
-              >
-                <button
-                  onClick={(e) => handleNavClick('shop', e)}
-                  className={`hover:text-neutral-500 transition-colors flex items-center space-x-1 uppercase tracking-[0.2em] ${
-                    currentPage === 'shop' ? 'text-black font-semibold' : 'text-neutral-700'
-                  }`}
-                >
-                  <span>JEWELLERY</span>
-                  <ChevronDown size={12} className="transition-transform group-hover:rotate-180" />
-                </button>
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-black transition-all duration-300 ${
-                  currentPage === 'shop' ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-
-                {/* Mega Menu Dropdown */}
-                {jewelleryDropdownOpen && (
-                  <div className="absolute top-full -left-6 w-[680px] bg-white border border-[#E8E5DF] shadow-xl p-8 z-50 animate-fadeIn">
-                    <div className="grid grid-cols-2 gap-8">
-                      {/* Categories List */}
-                      <div>
-                        <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 mb-4 pb-2 border-b border-neutral-200">
-                          Categories
-                        </p>
-                        <div className="flex flex-col space-y-3">
-                          <button
-                            onClick={(e) => handleNavClick('shop', e)}
-                            className="text-left text-[12px] tracking-[0.18em] text-neutral-800 hover:text-black font-semibold"
-                          >
-                            SHOP ALL JEWELLERY
-                          </button>
-                          {NAVIGATION_DATA.mainMenu[1].categories.slice(1).map((cat) => (
-                            <button
-                              key={cat.label}
-                              onClick={(e) => {
-                                if (!cat.disabled) handleNavClick('shop', e);
-                              }}
-                              className={`text-left text-[12px] tracking-[0.18em] transition-colors ${
-                                cat.disabled
-                                  ? 'text-neutral-300 cursor-not-allowed'
-                                  : 'text-neutral-800 hover:text-black hover:translate-x-1'
-                              }`}
-                            >
-                              {cat.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Featured Pieces Preview */}
-                      <div>
-                        <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 mb-4 pb-2 border-b border-neutral-200">
-                          Featured Objects
-                        </p>
-                        <div className="grid grid-cols-2 gap-4">
-                          {NAVIGATION_DATA.mainMenu[1].featured.map((item) => (
-                            <div
-                              key={item.title}
-                              onClick={() => {
-                                onSelectProduct(item.link.replace('/products/', ''));
-                                setJewelleryDropdownOpen(false);
-                              }}
-                              className="group/card cursor-pointer"
-                            >
-                              <div className="aspect-square overflow-hidden bg-neutral-100 mb-2 border border-neutral-200/60">
-                                <img
-                                  src={item.image}
-                                  alt={item.title}
-                                  className="w-full h-full object-cover object-center group-hover/card:scale-105 transition-transform duration-500"
-                                />
-                              </div>
-                              <span className="block text-[11px] tracking-[0.14em] uppercase text-neutral-800 group-hover/card:underline">
-                                {item.title}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* THE GYRE COLLECTION */}
-              <button
-                onClick={(e) => handleNavClick('gyre', e)}
-                className={`hover:text-neutral-500 transition-colors py-2 relative group uppercase tracking-[0.2em] ${
-                  currentPage === 'gyre' ? 'text-black font-semibold' : 'text-neutral-700'
-                }`}
-              >
-                <span>COLLECTIONS</span>
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-black transition-all duration-300 ${
-                  currentPage === 'gyre' ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-              </button>
-
-              {/* ABOUT */}
-              <button
-                onClick={(e) => handleNavClick('about', e)}
-                className={`hover:text-neutral-500 transition-colors py-2 relative group uppercase tracking-[0.2em] ${
-                  currentPage === 'about' ? 'text-black font-semibold' : 'text-neutral-700'
-                }`}
-              >
-                <span>ABOUT</span>
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-black transition-all duration-300 ${
-                  currentPage === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-              </button>
-
-              {/* CONTACT */}
-              <button
-                onClick={(e) => handleNavClick('contact', e)}
-                className={`hover:text-neutral-500 transition-colors py-2 relative group uppercase tracking-[0.2em] ${
-                  currentPage === 'contact' ? 'text-black font-semibold' : 'text-neutral-700'
-                }`}
-              >
-                <span>CONTACT</span>
-                <span className={`absolute bottom-0 left-0 h-[1px] bg-black transition-all duration-300 ${
-                  currentPage === 'contact' ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
-              </button>
-            </nav>
-          </div>
-
-          {/* Center: Brand Logo */}
-          <div className="flex-shrink-0 flex items-center justify-center">
-            <button
-              onClick={(e) => handleNavClick('home', e)}
-              className="block py-2 focus:outline-none"
-              aria-label="Valoir Atelier Home"
-            >
-              <BrandLogo className="h-7 sm:h-9 md:h-10 cursor-pointer" />
-            </button>
-          </div>
-
-          {/* Right: Currency & Utility Icons */}
-          <div className="flex items-center justify-end space-x-4 sm:space-x-6 flex-1">
-            {/* Currency selector */}
-            <div className="relative hidden sm:block">
-              <button
-                onClick={() => setCurrencyOpen(!currencyOpen)}
-                className="flex items-center space-x-1 text-[11px] uppercase tracking-[0.18em] font-sans text-neutral-600 hover:text-black py-1"
-              >
-                <span>{currency}</span>
-                <ChevronDown size={10} />
-              </button>
-              {currencyOpen && (
-                <div className="absolute right-0 top-full mt-2 w-24 bg-white border border-[#E8E5DF] shadow-lg py-2 z-50 text-[11px] font-sans">
-                  {['INR', 'USD', 'EUR', 'GBP'].map((c) => (
-                    <button
-                      key={c}
-                      onClick={() => {
-                        setCurrency(c);
-                        setCurrencyOpen(false);
-                      }}
-                      className="w-full text-left px-4 py-1.5 hover:bg-neutral-100 transition-colors uppercase tracking-[0.15em]"
-                    >
-                      {c}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Search Icon */}
-            <button
-              onClick={onOpenSearch}
-              className="p-1.5 text-neutral-800 hover:text-black transition-colors"
-              aria-label="Search"
-            >
-              <Search size={19} strokeWidth={1.5} />
-            </button>
-
-            {/* Account Icon */}
-            <button
-              onClick={() => alert('Salon Portal: Sign in to manage client orders and bespoke appointments.')}
-              className="hidden sm:block p-1.5 text-neutral-800 hover:text-black transition-colors"
-              aria-label="Account"
-            >
-              <User size={19} strokeWidth={1.5} />
-            </button>
-
-            {/* Cart Icon with Counter */}
-            <button
-              onClick={onOpenCart}
-              className="p-1.5 text-neutral-800 hover:text-black transition-colors relative flex items-center"
-              aria-label="Cart"
-            >
-              <ShoppingBag size={20} strokeWidth={1.5} />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#141414] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-sans font-bold">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-          </div>
-
-        </div>
-      </header>
-
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-
-          {/* Drawer Content */}
-          <div className="relative w-full max-w-sm bg-white h-full shadow-2xl flex flex-col z-10 p-6 overflow-y-auto">
-            <div className="flex items-center justify-between pb-6 border-b border-neutral-200">
-              <BrandLogo className="h-6" />
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 text-neutral-600 hover:text-black"
-                aria-label="Close Menu"
-              >
-                <X size={22} strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <div className="py-6 flex flex-col space-y-5 text-[13px] uppercase tracking-[0.22em] font-sans text-left">
-              <button
-                onClick={(e) => handleNavClick('home', e)}
-                className={`text-left py-1 ${currentPage === 'home' ? 'font-bold text-black' : 'text-neutral-800'}`}
-              >
-                HOME
-              </button>
-
-              <button
-                onClick={(e) => handleNavClick('shop', e)}
-                className={`text-left py-1 ${currentPage === 'shop' ? 'font-bold text-black' : 'text-neutral-800'}`}
-              >
-                SHOP ALL JEWELLERY
-              </button>
-
-              <button
-                onClick={(e) => handleNavClick('gyre', e)}
-                className={`text-left py-1 ${currentPage === 'gyre' ? 'font-bold text-black' : 'text-neutral-800'}`}
-              >
-                COLLECTIONS (GYRE SS26)
-              </button>
-
-              <button
-                onClick={(e) => handleNavClick('about', e)}
-                className={`text-left py-1 ${currentPage === 'about' ? 'font-bold text-black' : 'text-neutral-800'}`}
-              >
-                ABOUT THE HOUSE
-              </button>
-
-              <button
-                onClick={(e) => handleNavClick('contact', e)}
-                className={`text-left py-1 ${currentPage === 'contact' ? 'font-bold text-black' : 'text-neutral-800'}`}
-              >
-                CONTACT &amp; PRIVATE SALON
-              </button>
-            </div>
-
-            <div className="mt-auto pt-6 border-t border-neutral-200 text-center text-xs text-neutral-500 font-sans">
-              <p className="mb-2">DEMI-FINE JEWELLERY</p>
-              <p className="text-[10px] tracking-widest text-neutral-400">CRAFTED IN INDIA</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
+export default function Navbar({currentPage,onNavigate,onOpenCart,cartCount,onOpenSearch,onSelectProduct}) {
+ const [scrolled,setScrolled]=useState(window.scrollY>20);
+ const [mobile,setMobile]=useState(false);
+ const [dropdown,setDropdown]=useState(null);
+ const [account,setAccount]=useState(false);
+ const headerRef=useRef(null);
+ const jewelleryTrigger=useRef(null);
+ const jewelleryPanel=useRef(null);
+ useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>20);window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);
+ useEffect(()=>{const close=e=>{if(e.key==='Escape'){setMobile(false);setDropdown(null);setAccount(false)}};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[]);
+ useEffect(()=>{
+  if(dropdown!=='jewellery'||mobile||!window.matchMedia('(min-width:1100px)').matches)return;
+  const previousOverflow=document.body.style.overflow;
+  const measure=()=>headerRef.current?.style.setProperty('--menu-top',`${headerRef.current.getBoundingClientRect().bottom}px`);
+  measure();
+  document.body.style.overflow='hidden';
+  const resize=()=>{if(window.innerWidth<1100)setDropdown(null);else measure()};
+  window.addEventListener('resize',resize);
+  const escape=e=>{if(e.key==='Escape'&&jewelleryPanel.current?.contains(document.activeElement))jewelleryTrigger.current?.focus()};
+  window.addEventListener('keydown',escape);
+  return()=>{document.body.style.overflow=previousOverflow;window.removeEventListener('resize',resize);window.removeEventListener('keydown',escape)};
+ },[dropdown,mobile]);
+ const overlay=currentPage==='home'&&!scrolled&&!mobile&&!dropdown;
+ const go=(page,category)=>{onNavigate(page,category);setMobile(false);setDropdown(null);setAccount(false)};
+ return <header ref={headerRef} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setDropdown(null)}} onMouseLeave={()=>{if(!mobile)setDropdown(null)}} className={`reference-header ${currentPage==='home'?'header-home':''} ${overlay?'header-overlay':''} ${scrolled?'header-scrolled':''} ${dropdown==='jewellery'&&!mobile?'jewellery-menu-open':''}`}>
+  <div className="reference-nav">
+   <button className="mobile-menu-toggle" aria-label={mobile?'Close menu':'Open menu'} aria-expanded={mobile} onClick={()=>setMobile(!mobile)}>{mobile?<X size={20}/>:<Menu size={20}/>}</button>
+   <nav className="desktop-navigation" aria-label="Main navigation">
+    <button onClick={()=>go('shop')}>NEW</button>
+    <div className="nav-dropdown" onMouseEnter={()=>setDropdown('jewellery')}>
+     <button ref={jewelleryTrigger} aria-controls="jewellery-menu" aria-current={currentPage==='shop'?'page':undefined} aria-expanded={dropdown==='jewellery'} onClick={()=>setDropdown('jewellery')} onKeyDown={e=>{if(e.key==='ArrowDown'){e.preventDefault();setDropdown('jewellery');requestAnimationFrame(()=>jewelleryPanel.current?.querySelector('.menu-categories button')?.focus())}}}>JEWELLERY</button>
+    </div>
+    <div className="nav-dropdown" onMouseEnter={()=>setDropdown('collections')} onMouseLeave={()=>setDropdown(null)}>
+     <button aria-current={currentPage==='gyre'?'page':undefined} aria-expanded={dropdown==='collections'} onClick={()=>setDropdown(dropdown==='collections'?null:'collections')}>COLLECTIONS</button>
+     {dropdown==='collections'&&<div className="collection-menu"><button onClick={()=>go('gyre')}>Gyre S/S 2026</button></div>}
+    </div>
+    <button aria-current={currentPage==='about'?'page':undefined} onClick={()=>go('about')}>ABOUT</button><button aria-current={currentPage==='contact'?'page':undefined} onClick={()=>go('contact')}>CONTACT</button>
+   </nav>
+   <button className="logo-link" onClick={()=>go('home')} aria-label="Valoir Atelier home"><BrandLogo /></button>
+   <div className="nav-utilities">
+    <button onClick={onOpenSearch} aria-label="Search"><Search size={14} strokeWidth={1}/><span>Search</span></button>
+    <div className="account-control"><button onClick={()=>setAccount(!account)} aria-expanded={account} aria-label="Account"><User size={14} strokeWidth={1}/><span>Account</span></button>{account&&<div className="account-popover"><h3>Welcome to Your Account</h3><p>Manage your profile, track your orders, and enjoy a seamless shopping journey with us.</p><button className="reference-link" onClick={()=>go('contact')}>Contact client services</button></div>}</div>
+    <button onClick={onOpenCart} aria-label={`Cart (${cartCount})`}><ShoppingBag size={14} strokeWidth={1}/><span>Cart ({cartCount})</span><span className="mobile-cart-count">({cartCount})</span></button>
+   </div>
+  </div>
+  {dropdown==='jewellery'&&!mobile&&<section ref={jewelleryPanel} id="jewellery-menu" className="jewellery-menu" aria-label="Jewellery menu">
+   <button className="jewellery-menu-close" aria-label="Close jewellery menu" onClick={()=>{setDropdown(null);jewelleryTrigger.current?.focus()}}><X size={20} strokeWidth={1}/></button>
+   <div className="jewellery-menu-content">
+    <nav className="menu-categories" aria-label="Jewellery categories">{NAVIGATION_DATA.mainMenu[1].categories.map(c=><button disabled={c.disabled} key={c.label} onClick={()=>go('shop',c.label)}><span>{c.label}</span></button>)}</nav>
+    <div className="menu-featured">{NAVIGATION_DATA.mainMenu[1].featured.map(item=><button key={item.title} onClick={()=>{onSelectProduct(item.link.replace('/products/',''));setDropdown(null)}}><div className="menu-product-media"><img src={item.image} alt={item.title}/>{item.hoverImage&&<img className="menu-product-hover" src={item.hoverImage} alt={`${item.title}, editorial view`}/>}</div><span>{item.title}</span></button>)}</div>
+   </div>
+  </section>}
+  {mobile&&<nav className="mobile-navigation" aria-label="Mobile navigation">
+    <button onClick={()=>go('shop')}>NEW</button>
+    <button onClick={()=>setDropdown(dropdown==='jewellery'?null:'jewellery')}>JEWELLERY <ChevronDown size={14}/></button>
+    {dropdown==='jewellery'&&<div className="mobile-categories">{NAVIGATION_DATA.mainMenu[1].categories.map(c=><button key={c.label} disabled={c.disabled} onClick={()=>go('shop',c.label)}>{c.label}</button>)}</div>}
+    <button onClick={()=>go('gyre')}>COLLECTIONS</button><button aria-current={currentPage==='about'?'page':undefined} onClick={()=>go('about')}>ABOUT</button><button aria-current={currentPage==='contact'?'page':undefined} onClick={()=>go('contact')}>CONTACT</button>
+  </nav>}
+ </header>;
 }

@@ -18,8 +18,8 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', '"New York"', 'Iowan Old Style', 'Apple Garamond', 'Baskerville', 'serif'],
-        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"New York"', 'Iowan Old Style', 'Apple Garamond', 'Baskerville', 'Times New Roman', 'serif'],
+        sans: ['"New York"', 'Iowan Old Style', 'Apple Garamond', 'Baskerville', 'Times New Roman', 'serif'],
       },
       letterSpacing: {
         luxury: '0.25em',

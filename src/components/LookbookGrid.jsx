@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LOOKBOOK_ITEMS, PRODUCTS } from '../data/storeData';
 import { ChevronLeft, ChevronRight, X, ShoppingBag } from 'lucide-react';
@@ -6,13 +6,22 @@ import { ChevronLeft, ChevronRight, X, ShoppingBag } from 'lucide-react';
 export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
   const [activeSpot, setActiveSpot] = useState(null);
   const [carouselIndices, setCarouselIndices] = useState({});
+  useEffect(() => {
+    const close = event => { if (event.key === 'Escape' || event.type === 'click') setActiveSpot(null); };
+    window.addEventListener('click', close);
+    window.addEventListener('keydown', close);
+    return () => { window.removeEventListener('click', close); window.removeEventListener('keydown', close); };
+  }, []);
 
   const handleSpotClick = (lookId, spotIndex, e) => {
     e.stopPropagation();
     if (activeSpot && activeSpot.lookId === lookId && activeSpot.spotIndex === spotIndex) {
       setActiveSpot(null);
     } else {
-      setActiveSpot({ lookId, spotIndex });
+      const rect = e.currentTarget.getBoundingClientRect();
+      const width = window.innerWidth >= 750 ? 340 : Math.min(260, window.innerWidth * .82);
+      const left = Math.max(12, Math.min(rect.left + rect.width / 2 - width / 2, window.innerWidth - width - 24));
+      setActiveSpot({ lookId, spotIndex, offset: left - rect.left });
     }
   };
 
@@ -33,47 +42,26 @@ export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
   };
 
   return (
-    <section id="lookbook" className="w-full bg-white py-12 sm:py-20">
-      <div className="max-w-[2000px] mx-auto px-3 sm:px-6 lg:px-8">
+    <section id="lookbook" className="reference-lookbook">
+      <div className="lookbook-inner">
         
-        {/* Editorial Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="mb-10 px-4 sm:px-2 flex flex-col md:flex-row md:items-end justify-between border-b border-neutral-200/80 pb-4"
-        >
-          <div>
-            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-neutral-400 block mb-1">
-              GYRE S/S 2026
-            </span>
-            <h3 className="text-2xl sm:text-4xl font-serif tracking-[0.1em] text-neutral-900">
-              Interactive Lookbook
-            </h3>
-          </div>
-          <p className="text-xs sm:text-sm font-sans tracking-[0.1em] text-neutral-500 mt-2 md:mt-0">
-            Click pulsing pins to discover crafted pieces
-          </p>
-        </motion.div>
-
         {/* 2-Column Grid Lookbook */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <div className="lookbook-track">
           {LOOKBOOK_ITEMS.map((look, lookIdx) => (
             <motion.div
               key={look.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: (lookIdx % 2) * 0.15 }}
-              className="relative overflow-hidden bg-neutral-100 group select-none shadow-xs hover:shadow-md transition-shadow duration-500"
+              className="lookbook-look relative group select-none"
             >
               {/* Lookbook Editorial Image */}
               <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <img
                   src={look.image}
                   alt={`Look ${look.id}`}
-                  className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out "
                   loading="lazy"
                 />
 
@@ -97,7 +85,7 @@ export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
 
                   // Intelligent positioning
                   const isNearRight = spot.left > 60;
-                  const isNearBottom = spot.top > 60;
+                  const isNearBottom = spot.placement === 'up' || spot.top > 60;
 
                   return (
                     <div
@@ -111,29 +99,27 @@ export default function LookbookGrid({ onSelectProduct, onAddToCart }) {
                     >
                       {/* Pulsing Dot Button */}
                       <motion.button
-                        whileHover={{ scale: 1.25 }}
+                        whileHover={{ scale: 1.12 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={(e) => handleSpotClick(look.id, sIdx, e)}
-                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isCurrentActive
-                            ? 'bg-black text-white scale-110 shadow-xl ring-2 ring-white'
-                            : 'bg-white/95 text-black shadow-lg hover:shadow-xl'
-                        }`}
+                        className={`lookbook-dot ${isCurrentActive ? "is-active" : ""}`}
                         aria-label={`View ${product.title}`}
+                        aria-expanded={!!isCurrentActive}
                       >
-                        <span className="w-2.5 h-2.5 rounded-full bg-black block hotspot-pulse" />
+                        <span />
                       </motion.button>
 
                       {/* Interactive Floating Card with Spring Animation */}
                       <AnimatePresence>
                         {isCurrentActive && (
                           <motion.div
-                            initial={{ opacity: 0, scale: 0.88, y: isNearBottom ? 10 : -10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             exit={{ opacity: 0, scale: 0.88, y: isNearBottom ? 10 : -10 }}
-                            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                            transition={{ duration: .2 }}
                             onClick={(e) => e.stopPropagation()}
-                            className={`absolute z-30 w-64 sm:w-72 bg-white border border-[#E8E5DF] shadow-2xl p-4 ${
+                            style={{ left: activeSpot.offset, right: 'auto' }}
+                            className={`absolute z-30 lookbook-card bg-white shadow-2xl ${
                               isNearRight ? 'right-0 sm:right-auto sm:-left-36' : 'left-0 sm:-left-36'
                             } ${
                               isNearBottom ? 'bottom-8' : 'top-8'

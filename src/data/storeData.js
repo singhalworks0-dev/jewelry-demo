@@ -1,4 +1,4 @@
-// Store data focusing on pure jewelry product & macro photography
+// White-background catalog shots paired with matching editorial hover photography.
 
 export const ANNOUNCEMENT_ITEMS = [
   "Global Shipping",
@@ -6,231 +6,362 @@ export const ANNOUNCEMENT_ITEMS = [
   "Limited Production"
 ];
 
+export const COLLECTION_BANNERS = {
+  ALL: { image: '/images/hero-gyre-campaign.jpg', position: 'center 40%' },
+  RINGS: { image: '/images/shoal-ring-editorial.jpg', position: 'center' },
+  WRISTWEAR: { image: '/images/gulf-cuff-editorial.jpg', position: 'center 55%' },
+  EARRINGS: { image: '/images/strait-earrings-editorial.jpg', position: 'center 40%' },
+  NECKLACES: { image: '/images/le-morne-necklace-editorial.jpg', position: 'center' },
+  GYRE: { image: '/images/rossby-collar-editorial.jpg', position: 'center 45%' }
+};
+
 export const PRODUCTS = {
   "gulf-cuff": {
-    id: "gulf-cuff",
-    title: "Gulf Cuff",
-    price: 84000,
-    priceFormatted: "Rs. 84,000.00",
-    category: "Wristwear",
-    material: "Proprietary Bronze & Cognac Topazes, 24k Gold Plating",
-    tagline: "Sculpted in bronze with hand-hammered texture and Cognac Topazes",
-    featuredImage: "/images/gulf-cuff-editorial.jpg",
-    images: [
-      "/images/gulf-cuff-editorial.jpg",
-      "/images/silfra-cuff-editorial.jpg"
-    ]
+    "id": "gulf-cuff",
+    "title": "Gulf Cuff",
+    "price": 84000,
+    "priceFormatted": "Rs. 84,000.00",
+    "category": "Wristwear",
+    "material": "Proprietary Bronze & Cognac Topazes, 24k Gold Plating",
+    "tagline": "Sculpted in bronze with hand-hammered texture and Cognac Topazes",
+    "featuredImage": "/images/gulf-cuff-white.png",
+    "images": [
+      "/images/gulf-cuff-white.png",
+      "/images/gulf-cuff-editorial.jpg"
+    ],
+    "hoverImage": "/images/gulf-cuff-editorial.jpg"
   },
   "shoal-ring": {
-    id: "shoal-ring",
-    title: "Shoal Ring",
-    price: 15000,
-    priceFormatted: "Rs. 15,000.00",
-    category: "Rings",
-    material: "Proprietary Bronze & Natural Gemstones",
-    tagline: "Fluid organic contours sculpted for tactile permanence",
-    featuredImage: "/images/shoal-ring-editorial.jpg",
-    images: [
-      "/images/shoal-ring-editorial.jpg",
-      "/images/haline-ring-editorial.jpg",
-      "/images/isobar-ring-editorial.jpg"
-    ]
+    "id": "shoal-ring",
+    "title": "Shoal Ring",
+    "price": 15000,
+    "priceFormatted": "Rs. 15,000.00",
+    "category": "Rings",
+    "material": "Proprietary Bronze & Natural Gemstones",
+    "tagline": "Fluid organic contours sculpted for tactile permanence",
+    "featuredImage": "/images/shoal-ring-white.png",
+    "images": [
+      "/images/shoal-ring-white.png",
+      "/images/shoal-ring-editorial.jpg"
+    ],
+    "hoverImage": "/images/shoal-ring-editorial.jpg"
   },
   "rogue-ring": {
-    id: "rogue-ring",
-    title: "Rogue Ring",
-    price: 12500,
-    priceFormatted: "Rs. 12,500.00",
-    category: "Rings",
-    material: "Proprietary Bronze",
-    tagline: "Bold angular geometry defying conventional symmetry",
-    featuredImage: "/images/rogue-ring-editorial.jpg",
-    images: [
-      "/images/rogue-ring-editorial.jpg",
-      "/images/breaker-ring-editorial.jpg",
-      "/images/shoal-ring-editorial.jpg"
-    ]
+    "id": "rogue-ring",
+    "title": "Rogue Ring",
+    "price": 12500,
+    "priceFormatted": "Rs. 12,500.00",
+    "category": "Rings",
+    "material": "Proprietary Bronze",
+    "tagline": "Bold angular geometry defying conventional symmetry",
+    "featuredImage": "/images/rogue-ring-white.png",
+    "images": [
+      "/images/rogue-ring-white.png",
+      "/images/rogue-ring-editorial.jpg"
+    ],
+    "hoverImage": "/images/rogue-ring-editorial.jpg"
   },
   "haline-ring": {
-    id: "haline-ring",
-    title: "Haline Ring",
-    price: 8000,
-    priceFormatted: "Rs. 8,000.00",
-    category: "Rings",
-    material: "Natural Gemstones & Bronze",
-    tagline: "A refined band celebrating ocean salinity and calm stillness",
-    featuredImage: "/images/haline-ring-editorial.jpg",
-    images: [
-      "/images/haline-ring-editorial.jpg",
-      "/images/shoal-ring-editorial.jpg",
-      "/images/isobar-ring-editorial.jpg"
-    ]
+    "id": "haline-ring",
+    "title": "Haline Ring",
+    "price": 8000,
+    "priceFormatted": "Rs. 8,000.00",
+    "category": "Rings",
+    "material": "Natural Gemstones & Bronze",
+    "tagline": "A refined band celebrating ocean salinity and calm stillness",
+    "featuredImage": "/images/haline-ring-white.png",
+    "images": [
+      "/images/haline-ring-white.png",
+      "/images/haline-ring-editorial.jpg"
+    ],
+    "hoverImage": "/images/haline-ring-editorial.jpg"
   },
   "strait-earrings": {
-    id: "strait-earrings",
-    title: "Strait Earrings",
-    price: 19000,
-    priceFormatted: "Rs. 19,000.00",
-    category: "Earrings",
-    material: "Hand-cast Bronze with 24k Gold Dip",
-    tagline: "Architectural drops that frame the jawline with subtle grace",
-    featuredImage: "/images/strait-earrings-editorial.jpg",
-    images: [
-      "/images/strait-earrings-editorial.jpg",
-      "/images/langmuir-earring-editorial.jpg"
-    ]
+    "id": "strait-earrings",
+    "title": "Strait Earrings",
+    "price": 19000,
+    "priceFormatted": "Rs. 19,000.00",
+    "category": "Earrings",
+    "material": "Hand-cast Bronze with 24k Gold Dip",
+    "tagline": "Architectural drops that frame the jawline with subtle grace",
+    "featuredImage": "/images/strait-earrings-white.png",
+    "images": [
+      "/images/strait-earrings-white.png",
+      "/images/strait-earrings-editorial.jpg"
+    ],
+    "hoverImage": "/images/strait-earrings-editorial.jpg"
   },
   "silfra-cuff": {
-    id: "silfra-cuff",
-    title: "Silfra Cuff",
-    price: 68900,
-    priceFormatted: "Rs. 68,900.00",
-    category: "Wristwear",
-    material: "Proprietary Bronze & Natural Quartz",
-    tagline: "Inspired by tectonic fissures and subterranean clarity",
-    featuredImage: "/images/silfra-cuff-editorial.jpg",
-    images: [
-      "/images/silfra-cuff-editorial.jpg",
-      "/images/gulf-cuff-editorial.jpg"
-    ]
+    "id": "silfra-cuff",
+    "title": "Silfra Cuff",
+    "price": 68900,
+    "priceFormatted": "Rs. 68,900.00",
+    "category": "Wristwear",
+    "material": "Proprietary Bronze & Natural Quartz",
+    "tagline": "Inspired by tectonic fissures and subterranean clarity",
+    "featuredImage": "/images/silfra-cuff-white.png",
+    "images": [
+      "/images/silfra-cuff-white.png",
+      "/images/silfra-cuff-editorial.jpg"
+    ],
+    "hoverImage": "/images/silfra-cuff-editorial.jpg"
   },
   "rossby-collar": {
-    id: "rossby-collar",
-    title: "Rossby Collar",
-    price: 52000,
-    priceFormatted: "Rs. 52,000.00",
-    category: "Necklaces",
-    material: "Proprietary Bronze & Hand-Set Stones",
-    tagline: "Planetary wave curves crafted with millimeter precision",
-    featuredImage: "/images/rossby-collar-editorial.jpg",
-    images: [
-      "/images/rossby-collar-editorial.jpg",
-      "/images/le-morne-necklace-editorial.jpg"
-    ]
+    "id": "rossby-collar",
+    "title": "Rossby Collar",
+    "price": 52000,
+    "priceFormatted": "Rs. 52,000.00",
+    "category": "Necklaces",
+    "material": "Proprietary Bronze & Hand-Set Stones",
+    "tagline": "Planetary wave curves crafted with millimeter precision",
+    "featuredImage": "/images/rossby-collar-white.png",
+    "images": [
+      "/images/rossby-collar-white.png",
+      "/images/rossby-collar-editorial.jpg"
+    ],
+    "hoverImage": "/images/rossby-collar-editorial.jpg"
   },
   "langmuir-earring": {
-    id: "langmuir-earring",
-    title: "Langmuir Earring",
-    price: 12500,
-    priceFormatted: "Rs. 12,500.00",
-    category: "Earrings",
-    material: "Natural Gemstones & Bronze",
-    tagline: "Cellular circulation translated into weightless ear adornment",
-    featuredImage: "/images/langmuir-earring-editorial.jpg",
-    images: [
-      "/images/langmuir-earring-editorial.jpg",
-      "/images/strait-earrings-editorial.jpg"
-    ]
+    "id": "langmuir-earring",
+    "title": "Langmuir Earring",
+    "price": 12500,
+    "priceFormatted": "Rs. 12,500.00",
+    "category": "Earrings",
+    "material": "Natural Gemstones & Bronze",
+    "tagline": "Cellular circulation translated into weightless ear adornment",
+    "featuredImage": "/images/langmuir-earring-white.png",
+    "images": [
+      "/images/langmuir-earring-white.png",
+      "/images/langmuir-earring-editorial.jpg"
+    ],
+    "hoverImage": "/images/langmuir-earring-editorial.jpg"
   },
   "isobar-ring": {
-    id: "isobar-ring",
-    title: "Isobar Ring",
-    price: 9800,
-    priceFormatted: "Rs. 9,800.00",
-    category: "Rings",
-    material: "Proprietary Bronze",
-    tagline: "Equal pressure curves cast into sculptured metal",
-    featuredImage: "/images/isobar-ring-editorial.jpg",
-    images: [
-      "/images/isobar-ring-editorial.jpg",
-      "/images/breaker-ring-editorial.jpg",
-      "/images/shoal-ring-editorial.jpg"
-    ]
+    "id": "isobar-ring",
+    "title": "Isobar Ring",
+    "price": 9800,
+    "priceFormatted": "Rs. 9,800.00",
+    "category": "Rings",
+    "material": "Proprietary Bronze",
+    "tagline": "Equal pressure curves cast into sculptured metal",
+    "featuredImage": "/images/isobar-ring-white.png",
+    "images": [
+      "/images/isobar-ring-white.png",
+      "/images/isobar-ring-editorial.jpg"
+    ],
+    "hoverImage": "/images/isobar-ring-editorial.jpg"
   },
   "breaker-ring": {
-    id: "breaker-ring",
-    title: "Breaker Ring",
-    price: 13800,
-    priceFormatted: "Rs. 13,800.00",
-    category: "Rings",
-    material: "Proprietary Bronze",
-    tagline: "The crest before the impact, frozen in heirloom form",
-    featuredImage: "/images/breaker-ring-editorial.jpg",
-    images: [
-      "/images/breaker-ring-editorial.jpg",
-      "/images/isobar-ring-editorial.jpg",
-      "/images/rogue-ring-editorial.jpg"
-    ]
+    "id": "breaker-ring",
+    "title": "Breaker Ring",
+    "price": 13800,
+    "priceFormatted": "Rs. 13,800.00",
+    "category": "Rings",
+    "material": "Proprietary Bronze",
+    "tagline": "The crest before the impact, frozen in heirloom form",
+    "featuredImage": "/images/breaker-ring-white.png",
+    "images": [
+      "/images/breaker-ring-white.png",
+      "/images/breaker-ring-editorial.jpg"
+    ],
+    "hoverImage": "/images/breaker-ring-editorial.jpg"
   },
   "le-morne-necklace": {
-    id: "le-morne-necklace",
-    title: "Le Morne Necklace",
-    price: 100000,
-    priceFormatted: "Rs. 1,00,000.00",
-    category: "Necklaces",
-    material: "Natural Gemstones, Proprietary Bronze, 24k Gold",
-    tagline: "The monumental cliff setting with an underwater waterfall motif",
-    featuredImage: "/images/le-morne-necklace-editorial.jpg",
-    images: [
-      "/images/le-morne-necklace-editorial.jpg",
-      "/images/rossby-collar-editorial.jpg"
-    ]
+    "id": "le-morne-necklace",
+    "title": "Le Morne Necklace",
+    "price": 100000,
+    "priceFormatted": "Rs. 1,00,000.00",
+    "category": "Necklaces",
+    "material": "Natural Gemstones, Proprietary Bronze, 24k Gold",
+    "tagline": "The monumental cliff setting with an underwater waterfall motif",
+    "featuredImage": "/images/le-morne-necklace-white.png",
+    "images": [
+      "/images/le-morne-necklace-white.png",
+      "/images/le-morne-necklace-editorial.jpg"
+    ],
+    "hoverImage": "/images/le-morne-necklace-editorial.jpg"
   }
 };
 
 export const LOOKBOOK_ITEMS = [
   {
-    id: 1,
-    image: "/images/hero-gyre-campaign.jpg",
-    spots: [
-      { productId: "gulf-cuff", left: 50, top: 48, placement: "up" },
-      { productId: "shoal-ring", left: 68, top: 65, placement: "up" }
+    "id": 1,
+    "image": "/images/hero-gyre-campaign.jpg",
+    "spots": [
+      {
+        "productId": "gulf-cuff",
+        "left": 54.0,
+        "top": 68.0,
+        "placement": "up"
+      },
+      {
+        "productId": "shoal-ring",
+        "left": 62.0,
+        "top": 80.0,
+        "placement": "up"
+      },
+      {
+        "productId": "rogue-ring",
+        "left": 88.0,
+        "top": 78.0,
+        "placement": "up"
+      },
+      {
+        "productId": "haline-ring",
+        "left": 85.0,
+        "top": 80.0,
+        "placement": "up"
+      }
     ]
   },
   {
-    id: 2,
-    image: "/images/shoal-ring-editorial.jpg",
-    spots: [
-      { productId: "shoal-ring", left: 48, top: 46, placement: "up" },
-      { productId: "haline-ring", left: 62, top: 58, placement: "up" }
+    "id": 2,
+    "image": "/images/shoal-ring-editorial.jpg",
+    "spots": [
+      {
+        "productId": "shoal-ring",
+        "left": 62.0,
+        "top": 33.0,
+        "placement": "right"
+      },
+      {
+        "productId": "gulf-cuff",
+        "left": 70.0,
+        "top": 41.0,
+        "placement": "left"
+      }
     ]
   },
   {
-    id: 3,
-    image: "/images/strait-earrings-editorial.jpg",
-    spots: [
-      { productId: "strait-earrings", left: 44, top: 40, placement: "up" },
-      { productId: "langmuir-earring", left: 62, top: 54, placement: "up" }
+    "id": 3,
+    "image": "/images/strait-earrings-editorial.jpg",
+    "spots": [
+      {
+        "productId": "strait-earrings",
+        "left": 58.0,
+        "top": 14.0,
+        "placement": "right"
+      },
+      {
+        "productId": "silfra-cuff",
+        "left": 72.0,
+        "top": 77.0,
+        "placement": "up"
+      }
     ]
   },
   {
-    id: 4,
-    image: "/images/rossby-collar-editorial.jpg",
-    spots: [
-      { productId: "rossby-collar", left: 52, top: 52, placement: "up" },
-      { productId: "le-morne-necklace", left: 65, top: 42, placement: "up" }
+    "id": 4,
+    "image": "/images/rossby-collar-editorial.jpg",
+    "spots": [
+      {
+        "productId": "strait-earrings",
+        "left": 50.0,
+        "top": 44.0,
+        "placement": "right"
+      },
+      {
+        "productId": "silfra-cuff",
+        "left": 68.0,
+        "top": 80.0,
+        "placement": "up"
+      },
+      {
+        "productId": "shoal-ring",
+        "left": 63.0,
+        "top": 82.0,
+        "placement": "up"
+      }
     ]
   },
   {
-    id: 5,
-    image: "/images/rogue-ring-editorial.jpg",
-    spots: [
-      { productId: "rogue-ring", left: 45, top: 45, placement: "up" },
-      { productId: "breaker-ring", left: 65, top: 62, placement: "up" }
+    "id": 5,
+    "image": "/images/rogue-ring-editorial.jpg",
+    "spots": [
+      {
+        "productId": "rossby-collar",
+        "left": 58.0,
+        "top": 77.0,
+        "placement": "up"
+      },
+      {
+        "productId": "haline-ring",
+        "left": 74.0,
+        "top": 71.0,
+        "placement": "up"
+      },
+      {
+        "productId": "rogue-ring",
+        "left": 79.0,
+        "top": 65.0,
+        "placement": "up"
+      },
+      {
+        "productId": "shoal-ring",
+        "left": 30.0,
+        "top": 78.0,
+        "placement": "up"
+      }
     ]
   },
   {
-    id: 6,
-    image: "/images/gulf-cuff-editorial.jpg",
-    spots: [
-      { productId: "gulf-cuff", left: 38, top: 42, placement: "up" },
-      { productId: "silfra-cuff", left: 66, top: 58, placement: "up" }
+    "id": 6,
+    "image": "/images/gulf-cuff-editorial.jpg",
+    "spots": [
+      {
+        "productId": "langmuir-earring",
+        "left": 34.0,
+        "top": 36.0,
+        "placement": "right"
+      },
+      {
+        "productId": "rossby-collar",
+        "left": 60.0,
+        "top": 51.0,
+        "placement": "right"
+      },
+      {
+        "productId": "rogue-ring",
+        "left": 29.0,
+        "top": 45.0,
+        "placement": "right"
+      },
+      {
+        "productId": "haline-ring",
+        "left": 26.0,
+        "top": 48.0,
+        "placement": "right"
+      }
     ]
   },
   {
-    id: 7,
-    image: "/images/langmuir-earring-editorial.jpg",
-    spots: [
-      { productId: "langmuir-earring", left: 48, top: 46, placement: "up" },
-      { productId: "strait-earrings", left: 66, top: 56, placement: "up" }
+    "id": 7,
+    "image": "/images/langmuir-earring-editorial.jpg",
+    "spots": [
+      {
+        "productId": "langmuir-earring",
+        "left": 82.0,
+        "top": 41.0,
+        "placement": "left"
+      }
     ]
   },
   {
-    id: 8,
-    image: "/images/silfra-cuff-editorial.jpg",
-    spots: [
-      { productId: "silfra-cuff", left: 42, top: 48, placement: "up" },
-      { productId: "isobar-ring", left: 64, top: 52, placement: "up" }
+    "id": 8,
+    "image": "/images/silfra-cuff-editorial.jpg",
+    "spots": [
+      {
+        "productId": "isobar-ring",
+        "left": 15.0,
+        "top": 49.0,
+        "placement": "right"
+      },
+      {
+        "productId": "breaker-ring",
+        "left": 13.0,
+        "top": 49.0,
+        "placement": "right"
+      }
     ]
   }
 ];
@@ -297,7 +428,7 @@ export const PHILOSOPHY_QUOTES = [
   },
   {
     id: "manifesto",
-    text: "VALOIR questions materials, shuns norms, challenges processes and pays homage to the history of worn objects through the strict category of Demi – Fine. Creations crafted with Natural Gemstones & Proprietary Bronze coupled with millennia of craftsmanship and skill handed down generations to build what has not been built."
+    text: "VALOIR ATELIER questions materials, shuns norms, challenges processes and pays homage to the history of worn objects through the strict category of Demi – Fine. Creations crafted with Natural Gemstones & Proprietary Bronze coupled with millennia of craftsmanship and skill handed down generations to build what has not been built."
   }
 ];
 
@@ -321,12 +452,14 @@ export const NAVIGATION_DATA = {
       featured: [
         {
           title: "Gulf Cuff",
-          image: "https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?auto=format&fit=crop&w=600&q=85",
+          image: "/images/gulf-cuff-white.png",
+          hoverImage: "/images/gulf-cuff-editorial.jpg",
           link: "/products/gulf-cuff"
         },
         {
           title: "Le Morne Necklace",
-          image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=85",
+          image: "/images/le-morne-necklace-white.png",
+          hoverImage: "/images/le-morne-necklace-editorial.jpg",
           link: "/products/le-morne-necklace"
         }
       ]

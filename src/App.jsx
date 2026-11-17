@@ -6,8 +6,6 @@ import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import ProductModal from './components/ProductModal';
 import SearchModal from './components/SearchModal';
-import NewsletterPopup from './components/NewsletterPopup';
-import PageSwitcher from './components/PageSwitcher';
 
 // The Pages
 import HomePage from './pages/HomePage';
@@ -21,15 +19,10 @@ import { PRODUCTS } from './data/storeData';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [shopCategory, setShopCategory] = useState('ALL');
 
   // Cart state
-  const [cartItems, setCartItems] = useState([
-    {
-      ...PRODUCTS['gulf-cuff'],
-      quantity: 1,
-      selectedSize: null
-    }
-  ]);
+  const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Search modal state
@@ -89,6 +82,7 @@ export default function App() {
   }, [currentPage, currentProductId]);
 
   const navigateTo = (pageId, prodId = null) => {
+    if (pageId === 'shop') setShopCategory(['RINGS','WRISTWEAR','EARRINGS','NECKLACES'].includes(prodId?.toUpperCase()) ? prodId.toUpperCase() : 'ALL');
     if (pageId === 'product' && prodId) {
       setCurrentProductId(prodId);
       setCurrentPage('product');
@@ -114,7 +108,7 @@ export default function App() {
       );
       if (existingIdx > -1) {
         const updated = [...prevItems];
-        updated[existingIdx].quantity += product.quantity || 1;
+        updated[existingIdx] = { ...updated[existingIdx], quantity: updated[existingIdx].quantity + (product.quantity || 1) };
         return updated;
       }
       return [...prevItems, { ...product, quantity: product.quantity || 1 }];
@@ -125,7 +119,7 @@ export default function App() {
   const handleUpdateQuantity = (idx, newQuantity) => {
     setCartItems((prev) => {
       const updated = [...prev];
-      updated[idx].quantity = newQuantity;
+      updated[idx] = { ...updated[idx], quantity: newQuantity };
       return updated;
     });
   };
@@ -136,7 +130,7 @@ export default function App() {
 
   const handleCheckout = () => {
     alert(
-      'Proceeding to Secure Checkout.\n\nThank you for choosing VALOIR ATELIER.\nOrders are crafted with natural gemstones and insured global shipping.'
+      'This is a local storefront preview. Checkout is not connected to a payment provider.'
     );
   };
 
@@ -144,14 +138,14 @@ export default function App() {
 
   // Page Transition variants
   const pageVariants = {
-    initial: { opacity: 0, y: 16 },
+    initial: { opacity: 0 },
     animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-    exit: { opacity: 0, y: -12, transition: { duration: 0.3, ease: 'easeIn' } }
+    exit: { opacity: 0, transition: { duration: 0.3, ease: 'easeIn' } }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#141414] font-serif selection:bg-neutral-200">
-      
+    <div className="min-h-screen flex flex-col bg-[#fffdfa] text-black font-serif selection:bg-neutral-200">
+
       {/* 1. Rotating Announcement Bar */}
       <AnnouncementBar />
 
@@ -166,7 +160,7 @@ export default function App() {
       />
 
       {/* Main Multi-Page Content Area with Smooth Crossfade Transitions */}
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1">
         <AnimatePresence mode="wait">
           {currentPage === 'home' && (
             <motion.div
@@ -193,6 +187,8 @@ export default function App() {
               exit="exit"
             >
               <ShopPage
+                key={shopCategory}
+                initialCategory={shopCategory}
                 onSelectProduct={(id) => setSelectedProductId(id)}
                 onNavigateToProduct={navigateToProduct}
                 onAddToCart={handleAddToCart}
@@ -254,7 +250,7 @@ export default function App() {
               animate="animate"
               exit="exit"
             >
-              <ContactPage />
+              <ContactPage onNavigate={navigateTo} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -264,7 +260,7 @@ export default function App() {
       <Footer onNavigate={navigateTo} />
 
       {/* Floating Elegant Page Switcher */}
-      <PageSwitcher currentPage={currentPage} onNavigate={navigateTo} />
+
 
       {/* Modals & Drawers */}
       <CartDrawer
@@ -290,7 +286,7 @@ export default function App() {
         onSelectProduct={(id) => navigateToProduct(id)}
       />
 
-      <NewsletterPopup />
+
     </div>
   );
 }
