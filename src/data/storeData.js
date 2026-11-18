@@ -374,11 +374,13 @@ export const HERO_SLIDES = [
     subtext: "Every collection is archived whence claimed, never to be remade.",
     buttonText: "Discover The Collection",
     link: "/collections/the-gyre-collection",
-    desktopImage: "/images/homepage-savee-hero.avif",
-    imagePosition: "center 45%",
-    mobilePosition: "48% center",
-    alt: "Black-and-white jewellery editorial featuring a statement earring",
-    mobileImage: "/images/homepage-savee-hero.avif"
+    desktopImage: "/images/homepage-jewellery-hero.avif",
+    imagePosition: "center 55%",
+    mobilePosition: "right center",
+    alt: "Sculptural gold hoop earrings displayed on pale stone",
+    overlayOpacity: 1,
+    overlayBackground: "linear-gradient(180deg,rgba(0,0,0,.58),rgba(0,0,0,.12) 25%,rgba(0,0,0,.58) 50%,rgba(0,0,0,.12) 80%,rgba(0,0,0,.55) 100%)",
+    mobileImage: "/images/homepage-jewellery-hero.avif"
   },
   {
     id: "wristwear",
