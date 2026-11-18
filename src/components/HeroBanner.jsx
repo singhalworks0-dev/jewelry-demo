@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 export default function HeroBanner({ slide, onExplore }) {
   const isOpening = slide.id === 'gyre';
   const reveal = { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { opacity: { duration: .8, delay: 1.6 }, y: { duration: 1.8, delay: .6 } } };
-  return <section id={slide.id} className={`campaign-banner ${isOpening ? 'campaign-opening' : ''} ${slide.id === 'wristwear' ? 'campaign-bottom' : ''}`}>
+  return <section id={slide.id} style={{'--campaign-position':slide.imagePosition||'center','--campaign-mobile-position':slide.mobilePosition||slide.imagePosition||'center'}} className={`campaign-banner ${isOpening ? 'campaign-opening' : ''} ${slide.id === 'wristwear' ? 'campaign-bottom' : ''}`}>
     <motion.picture className="campaign-image" initial={{ scale: 1 }} whileInView={{ scale: 1.05 }} viewport={{ once: true }} transition={{ duration: 4.4, ease: 'linear' }}>
       <source media="(max-width: 575px)" srcSet={slide.mobileImage || slide.desktopImage} />
-      <img src={slide.desktopImage} alt={`${slide.title} jewellery campaign`} loading={isOpening ? 'eager' : 'lazy'} fetchPriority={isOpening ? 'high' : 'auto'} />
+      <img src={slide.desktopImage} alt={slide.alt||`${slide.title} jewellery campaign`} loading={isOpening ? 'eager' : 'lazy'} fetchPriority={isOpening ? 'high' : 'auto'} />
     </motion.picture>
     <div className="campaign-overlay" />
     <div className="campaign-copy">

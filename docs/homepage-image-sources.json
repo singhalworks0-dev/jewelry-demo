@@ -1,0 +1,18 @@
+[
+  {
+    "file": "public/images/homepage-savee-hero.avif",
+    "savee": "https://savee.com/i/ecaNRF_/",
+    "source": null,
+    "image": "https://dm.savee-cdn.com/asset-image/original/65eced8ce2e5294d572df055.avif",
+    "width": 1350,
+    "height": 1080
+  },
+  {
+    "file": "public/images/homepage-savee-lookbook.avif",
+    "savee": "https://savee.com/i/P7EUSb5/",
+    "source": "https://www.andeliz.fr/joaillerie",
+    "image": "https://dm.savee-cdn.com/asset-image/original/69bf1ce73c9caf363256b090.avif",
+    "width": 956,
+    "height": 1434
+  }
+]

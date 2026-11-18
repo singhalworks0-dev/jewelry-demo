@@ -186,7 +186,7 @@ export const PRODUCTS = {
 export const LOOKBOOK_ITEMS = [
   {
     "id": 1,
-    "image": "/images/hero-gyre-campaign.jpg",
+    "image": "/images/homepage-savee-lookbook.avif",
     "spots": [
       {
         "productId": "gulf-cuff",
@@ -374,8 +374,11 @@ export const HERO_SLIDES = [
     subtext: "Every collection is archived whence claimed, never to be remade.",
     buttonText: "Discover The Collection",
     link: "/collections/the-gyre-collection",
-    desktopImage: "/images/hero-gyre-campaign.jpg",
-    mobileImage: "/images/hero-gyre-campaign.jpg"
+    desktopImage: "/images/homepage-savee-hero.avif",
+    imagePosition: "center 45%",
+    mobilePosition: "48% center",
+    alt: "Black-and-white jewellery editorial featuring a statement earring",
+    mobileImage: "/images/homepage-savee-hero.avif"
   },
   {
     id: "wristwear",
